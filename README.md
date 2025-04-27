@@ -31,6 +31,6 @@ Contents:
 
 10.4-bit Parallel Adder
 
-11.Subtractor (Half and Full)
+11.Half Subtractor 
 
-12.4-bit Comparator
+12.Full Subtractor
