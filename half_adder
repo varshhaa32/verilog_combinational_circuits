@@ -1,23 +1,22 @@
 module half_adder(a,b,sum,cout);
 input a,b;
-output reg sum,cout;
-always@(*)
-begin
-    sum=a^b;
-    cout=~a&b;
-end
+output sum,cout;
+assign sum=a^b;
+assign cout=a&b;
 endmodule
 
 //testbench
 module ha_tb;
 reg a,b;
 wire sum,cout;
-half_adder a1(a,b,sum,cout);
+half_adder a1(.a(a),.b(b),.sum(sum),.cout(cout));
 initial begin
-    a=1'b0;b=1'b0;#10;
-    a=1'b0;b=1'b1;#10;
-    a=1'b1;b=1'b0;#10;
-    a=1'b1;b=1'b1;
-    #10;
+    $display("a b | sum cout");
+    $monitor("%b %b | %b  %b ",a,b,sum,cout);
+    {a,b}=2'b00;#10;
+    {a,b}=2'b01;#10;
+    {a,b}=2'b10;#10;
+    {a,b}=2'b11;#10;
+    #10;$finish
 end
 endmodule
