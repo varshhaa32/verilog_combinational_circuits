@@ -1,0 +1,28 @@
+module comp_4bit(a,b,x,y,z);
+input [1:0]a,b;
+output reg x,y,z;
+always@(*)
+begin
+    x=0;y=0;z=0;//initial value set to zero
+    if(a>b)
+        x=1'b1;
+    else if(a<b)
+        y=1'b1;
+    else if(a==b)
+        z=1'b1;
+end
+endmodule
+
+//testbench
+module comp_4bit_tb;
+reg [1:0]a,b;
+wire x,y,z;
+comp_4bit c1(a,b,x,y,z);
+initial begin
+    $display("a  b  | x y z");
+    a=2'b00;b=2'b01;#10;$display("%b %b | %b %b %b",a,b,x,y,z);
+    a=2'b10;b=2'b11;#10;$display("%b %b | %b %b %b",a,b,x,y,z);
+    a=2'b10;b=2'b00;#10;$display("%b %b | %b %b %b",a,b,x,y,z);
+    a=2'b10;b=2'b10;#10;$display("%b %b | %b %b %b",a,b,x,y,z);
+end
+endmodule
