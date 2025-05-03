@@ -1,0 +1,31 @@
+module encoder(X,Y);
+input [7:0]X;
+output reg [2:0]Y;
+always@(*)
+begin
+    case(X)
+        8'b00000001:Y=3'b000;
+        8'b00000010:Y=3'b001;
+        8'b00000100:Y=3'b010;
+        8'b00001000:Y=3'b011;
+        8'b00010000:Y=3'b100;
+        8'b00100000:Y=3'b101;
+        8'b01000000:Y=3'b110;
+        8'b10000000:Y=3'b111;
+    endcase
+end
+endmodule
+
+//testbench
+module encoder_tb;
+reg [7:0]X;
+wire [2:0]Y;
+encoder e1(X,Y);
+initial begin
+    $display("   X      |  Y");
+    X=8'b00001000;#10;$display("%b  | %b",X,Y);
+    X=8'b00100000;#10;$display("%b  | %b",X,Y);
+    X=8'b01000000;#10;$display("%b  | %b",X,Y);
+    X=8'b10000000;#10;$display("%b  | %b",X,Y);
+end
+endmodule
