@@ -1,0 +1,34 @@
+module priority_en(A,Y,value);
+input [3:0]A;
+output reg [1:0]Y;
+output reg value;//value indicates whether an input is valid or not
+always@(*)
+begin
+    value=1'b1;
+    casez(A) // casez allows us to input dont care terms
+        
+        4'b0001:Y=2'b00;
+        4'b001?:Y=2'b01;
+        4'b01??:Y=2'b10;
+        4'b1???:Y=2'b11;
+        default:Y=2'b00;
+    endcase
+    if(A==4'b0000)
+        value=0;//input is invalid
+   end
+endmodule
+//testbench
+module priority_entb;
+reg [3:0]A;
+wire [1:0]Y;
+wire value;
+priority_en p1(A,Y,value);
+initial
+begin
+    $display(" A    | Y value");
+    A=4'b0011;#10;$display("%b  |%b   %b",A,Y,value);
+    A=4'b0111;#10;$display("%b  |%b   %b",A,Y,value);
+    A=4'b1011;#10;$display("%b  |%b   %b",A,Y,value);
+    A=4'b0000;#10;$display("%b  |%b   %b",A,Y,value);
+end
+endmodule
