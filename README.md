@@ -29,8 +29,6 @@ Contents:
 
 9.Priority Encoder
 
-10.4-bit Parallel Adder
+10.Half Subtractor 
 
-11.Half Subtractor 
-
-12.Full Subtractor
+11.Full Subtractor
